@@ -73,7 +73,7 @@ function love.load()
       table.insert(player.bullets, bullet)
     end
   end
-  
+
   for i=0, 10 do
     enemies_controller:spawnEnemy(i * 15, 0)
   end
@@ -111,7 +111,7 @@ function love.update(dt)
     player.x = player.x - player.speed
   end
 
-  if love.keyboard.isDown(" ") then
+  if love.keyboard.isDown("space") then
     player.fire()
   end
 
@@ -119,7 +119,7 @@ function love.update(dt)
     -- we win!!
     game_win = true
   end
-  
+
   for _,e in pairs(enemies_controller.enemies) do
     if e.y >= love.graphics.getHeight()/4 then
       game_over = true
@@ -133,7 +133,7 @@ function love.update(dt)
     end
     b.y = b.y - 2
   end
-  
+
   checkCollisions(enemies_controller.enemies, player.bullets)
 end
 
@@ -148,14 +148,14 @@ function love.draw()
     -- we'll leave the return out so that we get to shoot
     -- victoriously into space
   end
-  
+
   particle_systems:draw()
-  
+
   -- draw the player
   love.graphics.setColor(255, 255, 255)
-  
+
   love.graphics.draw(player.image, player.x, player.y)
-  
+
   for _,e in pairs(enemies_controller.enemies) do
     love.graphics.draw(enemies_controller.image, e.x, e.y, 0)
   end
